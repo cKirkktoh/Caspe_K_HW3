@@ -3,12 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lumen API</title>
+  <title>Chinese Movies API</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
   <script defer type="module" src="js/main.js"></script>
+  <script defer src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <!-- <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script> -->
 </head>
 <body>
+  <div class="grid-con" id="app">
+    <div class="col-span-full" id="content">
+      <h2>Top Chinese Movies</h2>
+      <p class="click">Click on a movie to find out more information on it..</p>
+        <ul class="poster-con">
+          <li v-for="movie in movies" :key="movie.id">
+            <div v-if="isLoading" class="loading-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" width="50" height="50" fill="#ccc">
+                <circle cx="50" cy="50" r="45" stroke-width="5" stroke="#ccc" stroke-dasharray="283" stroke-dashoffset="0">
+                  <animate attributeName="stroke-dashoffset" dur="2s" repeatCount="indefinite" from="0" to="283"></animate>
+                </circle>
+              </svg>
+            </div>
+            <img class="movie-poster" :src="'images/' + movie.poster_path" @click="getMovieDetails(movie.id)" :alt="movie.id">
 
+            <div v-if="selectedMovie && selectedMovie.id === movie.id" class="modal-content">
+              <span class="close" @click="closeDetails">&times;</span>
+              <p class="name">{{ selectedMovie.name }}</p>
+              <p class="year">{{ selectedMovie.release_year }}</p>
+              <p class="des">{{ selectedMovie.description }}</p>
+            </div>
+          </li>
+        </ul>
+    </div>
+
+        <!-- Error Message -->
+        <div class="col-span-full" v-if="error" class="error-message">{{ error }}</div>
+  </div>
 </body>
 </html>
