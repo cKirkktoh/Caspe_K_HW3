@@ -18,7 +18,7 @@ export function ajaxVue() {
   },
   methods: {
     getMovies() {
-      fetch('http://localhost/movies-backend-api/public/movies')
+      fetch('http://localhost:8000/movies-backend-api/public/movies')
         .then(response => response.json())
         .then(data => {
           // console.log(data);
@@ -33,7 +33,7 @@ export function ajaxVue() {
     // second ajax call
     getMovieDetails(id) {
       this.selectedMovieId = id;
-      fetch(`http://localhost/movies-backend-api/public/movies/${id}`)
+      fetch(`http://localhost:8000/movies-backend-api/public/movies/${id}`)
         .then(response => response.json())
         .then(data => {
             // console.log(data);
