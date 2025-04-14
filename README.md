@@ -1,4 +1,4 @@
-# Chinese Animated Movies Viewer 🎥🐉
+# Lumen Vue Chinese Animation Movies 🎥🐉
 
 This project is a simple Vue.js frontend connected to a custom-built Lumen API. It showcases a collection of Chinese animated movies, allowing users to browse through a sorted list and view individual movie details—all without leaving the page.
 
