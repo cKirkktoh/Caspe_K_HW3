@@ -15,7 +15,7 @@
 */
 
 
-//matches localhost:8888/lumen/public/
+//matches localhost:8000/lumen/public/
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
